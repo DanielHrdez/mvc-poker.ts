@@ -8,9 +8,12 @@
     "@exercism/eslint-config-javascript": "^0.6.0",
     "@types/jest": "^27.4.1",
     "@types/node": "^16.11.25",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
     "babel-jest": "^27.5.1",
     "core-js": "^3.21.1",
-    "eslint": "^8.9.0",
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
     "jest": "^27.5.1"
   },
   "scripts": {
@@ -22,8 +25,14 @@
     "type": "git",
     "url": "git+https://github.com/ULL-ESIT-PAI-2021-2022/2021-2022-PAI-P13-Poker.git"
   },
-  "keywords": [Javascript, HTML, canvas, events, Poker],
-  "author": "F. de Sande <fsande@ull.es>",
+  "keywords": [
+    "Javascript",
+    "HTML",
+    "canvas",
+    "events",
+    "Poker"
+  ],
+  "author": "Daniel Hernandez de Leon <alu0101331720@ull.edu.es>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ULL-ESIT-PAI-2021-2022/2021-2022-PAI-P13-Poker/issues"

@@ -26,7 +26,7 @@ public class ProgramaDeConversion {
 		ConversorEurosPesetas modelo = new ConversorEurosPesetas();
 		// la vista:
 		// InterfazVista vista = new VentanaConversor();
-		InterfazVista vista = new InterfazTextualConversor();
+		InterfazVista vista = new VentanaConversor();
 		// y el control:
 		ControlConversor control = new ControlConversor (vista, modelo);
 		// configura la vista
