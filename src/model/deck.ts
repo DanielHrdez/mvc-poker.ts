@@ -86,9 +86,23 @@ export class Deck {
   }
 
   /**
-   * Sort the deck.
+   * Sorts the deck.
    */
   public sort(): void {
     this.cards.sort((card1, card2) => card1.higherTo(card2) ? 1 : -1);
+  }
+
+  /**
+   * Moves the cards from the deck to the hand.
+   * @param {Hand} hand - Hand to move cards.
+   * @param {number} numberCards - Number of cards to move.
+   */
+  public moveCards(hand: Hand, numberCards: number): void {
+    for (let i = 0; i < numberCards; i++) {
+      const card = this.popCard();
+      if (card) {
+        hand.addCard(card);
+      }
+    }
   }
 }

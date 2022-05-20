@@ -29,4 +29,3 @@ app.listen(port, '0.0.0.0', () => {
 app.get('/', (req, res) => {
   res.sendFile('index.html', {root: 'public'});
 });
- 

@@ -9,8 +9,8 @@ import {Card} from './card';
  * Class that represents a hand of cards.
  */
 export class Hand {
-  private cards: Card[];
-  private label: string;
+  protected cards: Card[];
+  protected label: string;
 
   /**
    * Constructor of the class.
