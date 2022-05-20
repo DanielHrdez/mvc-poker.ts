@@ -3,6 +3,8 @@
  * @author Daniel Hernandez de Leon
  */
 
+export const NUMBER_RANKS = 13;
+
 /* eslint-disable no-unused-vars */
 export enum Rank {
   Ace,
