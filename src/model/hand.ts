@@ -3,7 +3,7 @@
  * @author Daniel Hernandez de Leon
  */
 
-import {Card} from './card';
+import {Card} from './card.js';
 
 /**
  * Class that represents a hand of cards.
@@ -46,5 +46,13 @@ export class Hand {
    */
   public addCard(card: Card): void {
     this.cards.push(card);
+  }
+
+  /**
+   * Getter of the cards.
+   * @return {Card[]} Array of cards.
+   */
+  public getCards(): Card[] {
+    return this.cards;
   }
 }

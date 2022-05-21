@@ -2,20 +2,21 @@
  * Universidad de La Laguna
  * @author Daniel Hernandez de Leon
  */
-import { PokerHandClasses } from './poker-hand-classes';
-import { Hand } from './hand';
+import { PokerHandClass } from './poker-hand-class.js';
 /**
  * Class that represents a poker hand.
  */
-export class PokerHand extends Hand {
+export class PokerHand {
     /**
      * True if has pair, false otherwise.
+     * @param {Hand} hand Hand to classify.
      * @return {boolean} True if has pair, false otherwise.
      */
-    hasPair() {
-        for (let i = 0; i < this.cards.length - 1; i++) {
-            for (let j = i + 1; j < this.cards.length; j++) {
-                if (this.cards[i].equalsRank(this.cards[j])) {
+    static hasPair(hand) {
+        const cards = hand.getCards();
+        for (let i = 0; i < cards.length - 1; i++) {
+            for (let j = i + 1; j < cards.length; j++) {
+                if (cards[i].equalsRank(cards[j])) {
                     return true;
                 }
             }
@@ -24,13 +25,15 @@ export class PokerHand extends Hand {
     }
     /**
      * True if has two pairs, false otherwise.
+     * @param {Hand} hand Hand to classify.
      * @return {boolean} True if has two pairs, false otherwise.
      */
-    hasTwoPairs() {
+    static hasTwoPairs(hand) {
+        const cards = hand.getCards();
         let pairs = 0;
-        for (let i = 0; i < this.cards.length - 1; i++) {
-            for (let j = i + 1; j < this.cards.length; j++) {
-                if (this.cards[i].equalsRank(this.cards[j])) {
+        for (let i = 0; i < cards.length - 1; i++) {
+            for (let j = i + 1; j < cards.length; j++) {
+                if (cards[i].equalsRank(cards[j])) {
                     pairs++;
                 }
             }
@@ -39,14 +42,16 @@ export class PokerHand extends Hand {
     }
     /**
      * True if has three of a kind, false otherwise.
+     * @param {Hand} hand Hand to classify.
      * @return {boolean} True if has three of a kind, false otherwise.
      */
-    hasThreeOfAKind() {
-        for (let i = 0; i < this.cards.length - 2; i++) {
-            for (let j = i + 1; j < this.cards.length - 1; j++) {
-                for (let k = j + 1; k < this.cards.length; k++) {
-                    if (this.cards[i].equalsRank(this.cards[j]) &&
-                        this.cards[i].equalsRank(this.cards[k])) {
+    static hasThreeOfAKind(hand) {
+        const cards = hand.getCards();
+        for (let i = 0; i < cards.length - 2; i++) {
+            for (let j = i + 1; j < cards.length - 1; j++) {
+                for (let k = j + 1; k < cards.length; k++) {
+                    if (cards[i].equalsRank(cards[j]) &&
+                        cards[i].equalsRank(cards[k])) {
                         return true;
                     }
                 }
@@ -56,12 +61,14 @@ export class PokerHand extends Hand {
     }
     /**
      * True if has straight, false otherwise.
+     * @param {Hand} hand Hand to classify.
      * @return {boolean} True if has straight, false otherwise.
      */
-    hasStraight() {
-        const firstCard = this.cards[0];
-        for (let i = 0; i < this.cards.length; i++) {
-            if (this.cards[i].getRank() === firstCard.getRank() + i) {
+    static hasStraight(hand) {
+        const cards = hand.getCards();
+        const firstCard = cards[0];
+        for (let i = 0; i < cards.length; i++) {
+            if (cards[i].getRank() === firstCard.getRank() + i) {
                 return true;
             }
         }
@@ -69,11 +76,13 @@ export class PokerHand extends Hand {
     }
     /**
      * True if has flush, false otherwise.
+     * @param {Hand} hand Hand to classify.
      * @return {boolean} True if has flush, false otherwise.
      */
-    hasFlush() {
-        for (let i = 0; i < this.cards.length - 1; i++) {
-            if (this.cards[i].getSuit() !== this.cards[i + 1].getSuit()) {
+    static hasFlush(hand) {
+        const cards = hand.getCards();
+        for (let i = 0; i < cards.length - 1; i++) {
+            if (cards[i].getSuit() !== cards[i + 1].getSuit()) {
                 return false;
             }
         }
@@ -81,23 +90,26 @@ export class PokerHand extends Hand {
     }
     /**
      * True if has full house, false otherwise.
+     * @param {Hand} hand Hand to classify.
      * @return {boolean} True if has full house, false otherwise.
      */
-    hasFullHouse() {
-        return this.hasThreeOfAKind() && this.hasPair();
+    static hasFullHouse(hand) {
+        return this.hasThreeOfAKind(hand) && this.hasPair(hand);
     }
     /**
      * True if has four of a kind, false otherwise.
+     * @param {Hand} hand Hand to classify.
      * @return {boolean} True if has four of a kind, false otherwise.
      */
-    hasFourOfAKind() {
-        for (let i = 0; i < this.cards.length - 3; i++) {
-            for (let j = i + 1; j < this.cards.length - 2; j++) {
-                for (let k = j + 1; k < this.cards.length - 1; k++) {
-                    for (let l = k + 1; l < this.cards.length; l++) {
-                        if (this.cards[i].equalsRank(this.cards[j]) &&
-                            this.cards[i].equalsRank(this.cards[k]) &&
-                            this.cards[i].equalsRank(this.cards[l])) {
+    static hasFourOfAKind(hand) {
+        const cards = hand.getCards();
+        for (let i = 0; i < cards.length - 3; i++) {
+            for (let j = i + 1; j < cards.length - 2; j++) {
+                for (let k = j + 1; k < cards.length - 1; k++) {
+                    for (let l = k + 1; l < cards.length; l++) {
+                        if (cards[i].equalsRank(cards[j]) &&
+                            cards[i].equalsRank(cards[k]) &&
+                            cards[i].equalsRank(cards[l])) {
                             return true;
                         }
                     }
@@ -108,42 +120,44 @@ export class PokerHand extends Hand {
     }
     /**
      * True if has straight flush, false otherwise.
+     * @param {Hand} hand Hand to classify.
      * @return {boolean} True if has straight flush, false otherwise.
      */
-    hasStraightFlush() {
-        return this.hasStraight() && this.hasFlush();
+    static hasStraightFlush(hand) {
+        return this.hasStraight(hand) && this.hasFlush(hand);
     }
     /**
      * Classifies the hand.
-     * @return {PokerHandClasses} Classified hand.
+     * @param {Hand} hand Hand to classify.
+     * @return {PokerHandClass} Classified hand.
      */
-    classify() {
-        if (this.hasStraightFlush()) {
-            return PokerHandClasses.STRAIGHT_FLUSH;
+    static classify(hand) {
+        if (this.hasStraightFlush(hand)) {
+            return PokerHandClass.STRAIGHT_FLUSH;
         }
-        else if (this.hasFourOfAKind()) {
-            return PokerHandClasses.FOUR_OF_A_KIND;
+        else if (this.hasFourOfAKind(hand)) {
+            return PokerHandClass.FOUR_OF_A_KIND;
         }
-        else if (this.hasFullHouse()) {
-            return PokerHandClasses.FULL_HOUSE;
+        else if (this.hasFullHouse(hand)) {
+            return PokerHandClass.FULL_HOUSE;
         }
-        else if (this.hasFlush()) {
-            return PokerHandClasses.FLUSH;
+        else if (this.hasFlush(hand)) {
+            return PokerHandClass.FLUSH;
         }
-        else if (this.hasStraight()) {
-            return PokerHandClasses.STRAIGHT;
+        else if (this.hasStraight(hand)) {
+            return PokerHandClass.STRAIGHT;
         }
-        else if (this.hasThreeOfAKind()) {
-            return PokerHandClasses.THREE_OF_A_KIND;
+        else if (this.hasThreeOfAKind(hand)) {
+            return PokerHandClass.THREE_OF_A_KIND;
         }
-        else if (this.hasTwoPairs()) {
-            return PokerHandClasses.TWO_PAIRS;
+        else if (this.hasTwoPairs(hand)) {
+            return PokerHandClass.TWO_PAIRS;
         }
-        else if (this.hasPair()) {
-            return PokerHandClasses.PAIR;
+        else if (this.hasPair(hand)) {
+            return PokerHandClass.PAIR;
         }
         else {
-            return PokerHandClasses.HIGH_CARD;
+            return PokerHandClass.HIGH_CARD;
         }
     }
 }

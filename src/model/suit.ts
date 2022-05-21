@@ -3,12 +3,10 @@
  * @author Daniel Hernandez de Leon
  */
 
-export const NUMBER_SUITS = 4;
-
 /* eslint-disable no-unused-vars */
 export enum Suit {
-  CLUBS,
-  DIAMONDS,
-  HEARTS,
-  SPADES,
+  CLUBS = 'C',
+  DIAMONDS = 'D',
+  HEARTS = 'H',
+  SPADES = 'S',
 }

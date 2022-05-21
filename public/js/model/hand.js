@@ -38,4 +38,11 @@ export class Hand {
     addCard(card) {
         this.cards.push(card);
     }
+    /**
+     * Getter of the cards.
+     * @return {Card[]} Array of cards.
+     */
+    getCards() {
+        return this.cards;
+    }
 }

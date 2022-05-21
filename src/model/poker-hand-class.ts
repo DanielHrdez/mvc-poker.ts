@@ -4,7 +4,7 @@
  */
 
 /* eslint-disable no-unused-vars */
-export enum PokerHandClasses {
+export enum PokerHandClass {
   HIGH_CARD,
   PAIR,
   TWO_PAIRS,

@@ -3,10 +3,10 @@
  * @author Daniel Hernandez de Leon
  */
 
-import {NUMBER_SUITS} from './suit';
-import {NUMBER_RANKS} from './rank';
-import {Card} from './card';
-import {Hand} from './hand';
+import {Suit} from './suit.js';
+import {Rank} from './rank.js';
+import {Card} from './card.js';
+import {Hand} from './hand.js';
 
 /**
  * Class that represents a deck of cards.
@@ -19,8 +19,8 @@ export class Deck {
    */
   constructor() {
     this.cards = [];
-    for (let suit = 0; suit < NUMBER_SUITS; suit++) {
-      for (let rank = 0; rank < NUMBER_RANKS; rank++) {
+    for (const suit of Object.values(Suit)) {
+      for (const rank of Object.values(Rank)) {
         this.cards.push(new Card(suit, rank));
       }
     }
